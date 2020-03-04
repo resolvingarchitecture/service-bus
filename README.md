@@ -11,6 +11,7 @@ using a SEDA bus.
 
 * Minimal light-weight service bus
 * Implement Enterprise Integration pattern routing between services
+* Support notification pub/sub
 * Use seda bus underneath to ensure guaranteed delivery and inter-process communications
 * provide service un-/registration
 * support full life-cycle management of service bus
