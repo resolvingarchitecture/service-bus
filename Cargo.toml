@@ -1,0 +1,26 @@
+[package]
+name = "service_bus"
+version = "0.0.1"
+authors = ["Brian Taylor <brian@resolvingarchitecture.io>"]
+license-file = "LICENSE"
+edition = "2018"
+description = "A service bus using a seda bus to unintelligently route messages between services."
+homepage = "http://resolvingarchitecture.io"
+documentation = "https://github.com/resolvingarchitecture/service-bus"
+repository = "https://github.com/resolvingarchitecture/service-bus"
+publish = true
+readme = "README.md"
+keywords = ["service","micro-service","service-bus"]
+categories = ["command-line-utilities"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = "0.4.8"
+failure = "0.1.5"
+exitfailure = "0.5.1"
+
+seda_bus = "0.0.1"
+
+[dev-dependencies]
+assert_cmd = "0.10"
