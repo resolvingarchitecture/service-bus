@@ -1,11 +1,11 @@
 
-struct Bus {
+mod bus {
 
+    struct Router {}
+
+    struct Registry {}
 }
 
-struct Registry {
-
-}
 
 #[cfg(test)]
 mod tests {
