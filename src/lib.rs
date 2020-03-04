@@ -1,15 +1,11 @@
 
-// trait Service {
-//
-// }
-//
-// struct Bus {
-//
-// }
-//
-// struct Registry {
-//
-// }
+struct Bus {
+
+}
+
+struct Registry {
+
+}
 
 #[cfg(test)]
 mod tests {
