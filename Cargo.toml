@@ -17,11 +17,10 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 log = "0.4.8"
-failure = "0.1.5"
-exitfailure = "0.5.1"
+simple_logger = "1.6.0"
 
-ra_common = "0.0.2"
-seda_bus = "0.0.1"
+ra_common = "0.0.44"
+seda_bus = "0.1.5"
 
 
 [dev-dependencies]
