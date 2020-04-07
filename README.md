@@ -9,10 +9,11 @@ using a SEDA bus.
 
 ## Design Goals
 
-* Minimal light-weight service bus
-* Implement Enterprise Integration pattern routing between services
-* Support notification pub/sub
-* Use seda bus underneath to ensure guaranteed delivery and inter-process communications
-* provide service un-/registration
-* support full life-cycle management of service bus
-* enable inter-service pipelines for cross-concerns like security and pub/sub
+*[x] Minimal light-weight service bus
+*[x] provide service un-/registration
+*[x] Use seda bus underneath
+*[ ] Implement Enterprise Integration pattern routing between services
+    *[x] Dynamic Slip
+*[ ] enable inter-service pipelines for cross-concerns like security and pub/sub
+*[ ] Support notification pub/sub
+*[ ] support full life-cycle management of service bus
