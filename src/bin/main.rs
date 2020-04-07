@@ -1,11 +1,9 @@
 extern crate log;
 extern crate simple_logger;
 
-use log::{trace,info};
-use std::thread;
-use std::time::Duration;
+use log::{trace};
 use service_bus::{LogService,ServiceBus};
-use ra_common::models::Envelope;
+use ra_common::models::{Envelope, Route};
 
 fn main() {
     simple_logger::init().unwrap();
@@ -13,25 +11,15 @@ fn main() {
     let from: u8 = 11;
 
     let mut bus = ServiceBus::new();
-    let mut log_service = LogService::new();
-    let mut service = Box::new(log_service);
+    let log_service = LogService::new();
+    let service = Box::new(log_service);
     let service_id = bus.register(service);
-
+    trace!("service registered (id: {})", service_id);
     for n in 1..10 {
-        let env = Envelope::new(from, service_id, format!("Hello World {}: {}", service_id, n).into_bytes());
+        let mut env = Envelope::new(from, service_id, format!("Hello World {}: {}", service_id, n).into_bytes());
+        env.slip.add_route(Route::new(service_id, 1));
         bus.send(env);
     }
-
-    thread::spawn( move || {
-        loop {
-            match bus.poll(addr) {
-                Some(env) => info!("env to={} msg={}", env.to, env.msg),
-                None => info!("x")
-            }
-        }
-    });
-
-    thread::sleep(Duration::from_secs(1));
-
+    trace!("unregister of service {} {}", service_id, if bus.unregister(service_id) { "successful"} else { "unsuccessful"});
     trace!("Service Bus Stopped.");
 }

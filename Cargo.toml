@@ -1,6 +1,6 @@
 [package]
 name = "service_bus"
-version = "0.0.2"
+version = "0.1.0"
 authors = ["Brian Taylor <brian@resolvingarchitecture.io>"]
 license-file = "LICENSE"
 edition = "2018"
@@ -19,8 +19,8 @@ categories = ["command-line-utilities"]
 log = "0.4.8"
 simple_logger = "1.6.0"
 
-ra_common = "0.0.44"
-seda_bus = "0.1.5"
+ra_common = "0.1.0"
+seda_bus = "0.1.7"
 
 
 [dev-dependencies]

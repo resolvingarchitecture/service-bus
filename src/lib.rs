@@ -1,12 +1,12 @@
 extern crate log;
 
-use log::{info,warn};
+use log::{debug,info,warn};
 use seda_bus::{MessageBus};
 use std::collections::HashMap;
 use ra_common::models::Envelope;
 
 
-trait Service {
+pub trait Service {
     fn operate(&mut self, operation: u8, env: Envelope);
 }
 
@@ -46,14 +46,18 @@ impl ServiceBus {
     }
     pub fn register(&mut self, service: Box<dyn Service>) -> u8 {
         let id :u8 = self.m_bus.register();
+        // take ownership of service
         self.services.insert(id, service);
         id
+    }
+    pub fn unregister(&mut self, service_id: u8) -> bool {
+        self.m_bus.unregister(service_id)
     }
     pub fn send(&mut self, mut env: Envelope) -> bool {
         match env.slip.end_route() {
             Some(route) => {
-                match self.services.get(&route.service) {
-                    Some(mut service) => {
+                match self.services.get_mut(&route.service) {
+                    Some(service) => {
                         service.operate(route.op, env);
                         true
                     },
@@ -61,8 +65,8 @@ impl ServiceBus {
                 }
             },
             None => {
-                warn!("{}", "No current route.");
-                false
+                debug!("{}", "No current route.");
+                true
             }
         }
     }
