@@ -3,12 +3,7 @@ extern crate log;
 use log::{debug,info,warn};
 use seda_bus::{MessageBus};
 use std::collections::HashMap;
-use ra_common::models::Envelope;
-
-
-pub trait Service {
-    fn operate(&mut self, operation: u8, env: Envelope);
-}
+use ra_common::models::{Envelope, Service};
 
 pub struct LogService {
 
