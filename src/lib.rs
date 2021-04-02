@@ -28,14 +28,16 @@ impl Service for LogService {
 }
 
 pub struct ServiceBus {
+    name: String,
     m_bus: MessageBus,
     services: HashMap<u8, Box<dyn Service>>
 }
 
 impl ServiceBus {
-    pub fn new() -> ServiceBus {
+    pub fn new(name: String) -> ServiceBus {
         ServiceBus {
-            m_bus: MessageBus::new(),
+            name:name.clone(),
+            m_bus: MessageBus::new(name.clone()),
             services: HashMap::new()
         }
     }

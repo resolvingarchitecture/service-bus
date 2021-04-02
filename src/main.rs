@@ -7,10 +7,10 @@ use ra_common::models::{Envelope, Route};
 
 fn main() {
     simple_logger::init().unwrap();
-    trace!("Starting Service Bus...");
+    trace!("Starting RA Service Bus...");
     let from: u8 = 11;
 
-    let mut bus = ServiceBus::new();
+    let mut bus = ServiceBus::new(String::from("ra"));
     let log_service = LogService::new();
     let service = Box::new(log_service);
     let service_id = bus.register(service);
